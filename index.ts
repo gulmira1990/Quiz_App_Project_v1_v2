@@ -72,3 +72,71 @@ function generateOptions(correctAnswer: number): number[] {
 
   return Array.from(options);
 }
+
+
+
+// Savolni yangilash
+function updateQuestion(): void {
+    const question = generateQuestion();
+    const options = generateOptions(question.correctAnswer);
+  
+    // Noto'g'ri javoblarni va to'g'ri javobni tasodifiy joylash
+    buttons.forEach((button, index) => {
+      button.innerText = options[index].toString();
+      button.onclick = () => handleAnswer(options[index], question.correctAnswer);
+    });
+  }
+  
+  // Javobni tekshirish
+  function handleAnswer(selectedAnswer: number, correctAnswer: number): void {
+    if (selectedAnswer === correctAnswer) {
+      correctAnswers++;
+    } else {
+      incorrectAnswers++;
+    }
+    noCheckedAnswers++; // Har bir javobni tekshirilgan deb hisoblash
+  
+    // Natijalarni yangilash
+    countCorrectAnswer.innerText = correctAnswers.toString();
+    countIncorrectAnswer.innerText = incorrectAnswers.toString();
+    countNoCheckedAnswer.innerText = noCheckedAnswers.toString();
+  
+    // Keyingi savolni ko'rsatish
+    currentQuestionIndex++;
+    updateQuestion();
+  }
+  
+  // Savollarni va vaqtni boshqarish
+  function startTimer(): void {
+    if (timer) clearInterval(timer); // Avvalgi timerni to'xtatish
+    timeLeft = 15;
+    questionTime.innerText = timeLeft.toString();
+    timer = setInterval(() => {
+      timeLeft--;
+      questionTime.innerText = timeLeft.toString();
+  
+      if (timeLeft <= 0) {
+        clearInterval(timer!);
+        // Agar vaqt tugasa, noto'g'ri deb hisoblang
+        handleAnswer(-1, -1); // maxsus noto'g'ri javob (vaqt tugadi deb)
+      }
+    }, 1000);
+  }
+  
+  // Oldingi va keyingi savollarni ko'rsatish
+  prevBtn.addEventListener("click", () => {
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      updateQuestion();
+    }
+  });
+  
+  nextBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    updateQuestion();
+  });
+  
+  // Dastlabki savolni yaratish
+  updateQuestion();
+  startTimer();
+  
