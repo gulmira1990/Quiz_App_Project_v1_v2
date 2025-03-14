@@ -1,38 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../build/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../build/index.css" />
     <title>Quiz App Project</title>
-</head>
-<body>
-    
-    <h1 class="text-center text-[48px] pt-[20px]" >Quiz App</h1>
-    <div class="flex justify-center pt-[80px]">
-       
-      <div class="border-4 border-dashed border-[purple] bg-[blueviolet]">
-        <div class="flex gap-[30px] p-[30px]">
-          <button id="number1" class="px-[30px] py-[15px] text-[32px] text-[#ff0000d7] font-medium bg-amber-400">3</button>
-          <button id="operator" class="px-[30px] py-[15px] text-[32px] font-medium bg-white">+</button>
-          <button id="number2" class="px-[30px] py-[15px] text-[32px] text-[#ff0000d7] font-medium bg-amber-400">9</button>
+  </head>
+  <body class="bg-[#890dc7]">
+    <div class="h-screen">
+      <!-- Savollar sonini korsatuvchi counetr yasash- SEVINCH -->
+      <div class="flex justify-between items-center">
+        <h3 id="question-number" class="ml-[50px] text-[40px] text-amber-50">1 - savol</h3>
+        <!-- Har bir savol uchun 15 soniya oralig'ini belgilang- SEVINCH -->
+        <div
+          class="p-[36px] border-2 border-amber-50 rounded-[50px] mr-[50px] mt-[20px] transition-transform transform hover:scale-105"
+        >
+          <p id="question-time" class="text-[40px] font-medium text-amber-50">15</p>
         </div>
-        <div class="flex justify-center flex-col items-center py-[50px]">
-          <div class="flex gap-[50px] pb-[30px]">
-            <button class="border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50">4</button>
-            <button class="border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50">12</button>
+      </div>
+      <h1 class="text-center text-[64px] text-white">Quiz App</h1>
+      
+      <div class="flex justify-center pt-[40px]">
+        <div
+          class="border-4 border-dashed border-[purple] bg-[blueviolet] px-[60px] rounded-[10px] transition-all duration-300 hover:shadow-2xl hover:border-purple-600"
+        >
+            <!-- Tasodifiy savol tuzish.- ISLOM -->
+    
+            <div class="flex gap-[30px] p-[30px]">
+                
+                <button
+                  id="number1"
+                  class="px-[30px] py-[15px] text-[32px] text-[#ff0000d7] font-medium bg-amber-400 transition-all duration-200 transform hover:scale-110 hover:bg-amber-500"
+                >
+                  
+                  3
+                </button>
+                <button
+                  id="operator"
+                  class="px-[30px] py-[15px] text-[32px] font-medium bg-white transition-all duration-200 transform hover:scale-110 hover:bg-gray-100"
+                >
+                  
+                  +
+                </button>
+                <button
+                  id="number2"
+                  class="px-[30px] py-[15px] text-[32px] text-[#ff0000d7] font-medium bg-amber-400 transition-all duration-200 transform hover:scale-110 hover:bg-amber-500"
+                >
+                  
+                  9
+                </button>
+            </div>
+    
+            <!-- Tasodifiy javoblar tuzish.- ISLOM -->
+            <div class="flex justify-center flex-col items-center py-[50px]">
+                <div class="flex gap-[50px] pb-[30px]">
+                  <button
+                    class="btn border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50 transition-all duration-200 transform hover:scale-105 hover:bg-amber-100"
+                  >
+                    4
+                  </button>
+                  <button
+                    class="btn border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50 transition-all duration-200 transform hover:scale-105 hover:bg-amber-100"
+                  >
+                    12
+                  </button>
+                </div>
+                <div class="flex gap-[50px]">
+                  <button
+                    class="btn border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50 transition-all duration-200 transform hover:scale-105 hover:bg-amber-100"
+                  >
+                    5
+                  </button>
+                  <button
+                    class="btn border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50 transition-all duration-200 transform hover:scale-105 hover:bg-amber-100"
+                  >
+                    7
+                  </button>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+    <!-- Savollarda oldinga va orqaga qaytish funksiyasini yarating- SEVINCH. -->
+      <div class="flex justify-center gap-[20px] mt-[30px]">
+        <button id="prev-btn"
+          class="px-[32px] py-[8px] bg-neutral-400 rounded-[100px] text-[24px] transition-all duration-200 hover:bg-neutral-500 hover:scale-110"
+        >
+          prev
+        </button>
+        <button id="next-btn"
+          class="px-[32px] py-[8px] bg-neutral-400 rounded-[100px] text-[24px] transition-all duration-200 hover:bg-neutral-500 hover:scale-110"
+        >
+          next
+        </button>
+      </div>
+      <!-- Barcha savol va javoblarni tarix sifatida yig'ish- SEVINCH -->
+      <div class="flex justify-center pt-[50px] mb-[50px]">
+        <div class="flex gap-[50px]">
+          <div
+            class="flex gap-[30px] mb-[10px] border w-[230px] px-[16px] py-[10px] rounded-[10px] bg-white transition-all duration-200 hover:shadow-lg hover:bg-gray-50"
+          >
+            <p class="text-[20px]">Correct answer :</p>
+            <p id="count_correct_answer" class="text-green-600 text-[20px]">
+              1
+            </p>
           </div>
-          <div class="flex gap-[50px]">
-            <button class="border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50">5</button>
-            <button class="border border-black px-[20px] py-[6px] text-[28px] font-medium text-[black] bg-amber-50">7</button>
+          <div
+            class="flex gap-[30px] mb-[10px] border w-[230px] px-[16px] py-[10px] rounded-[10px] bg-white transition-all duration-200 hover:shadow-lg hover:bg-gray-50"
+          >
+            <p class="text-[20px]">Incorrect answer :</p>
+            <p id="count_incorrect_answer" class="text-red-700 text-[20px]">
+              1
+            </p>
+          </div>
+          <div
+            class="flex gap-[30px] border w-[230px] px-[16px] py-[10px] rounded-[10px] bg-white transition-all duration-200 hover:shadow-lg hover:bg-gray-50"
+          >
+            <p class="text-[20px]">No checked :</p>
+            <p id="count_nochecked_answer" class="text-yellow-800 text-[20px]">
+              1
+            </p>
           </div>
         </div>
       </div>
     </div>
-    
-   
-   
-    
-</body>
-<script src="../build/index.js"></script>
+  </body>
+  <script src="../build/index.js"></script>
 </html>
